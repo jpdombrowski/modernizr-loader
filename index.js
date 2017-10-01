@@ -4,14 +4,12 @@ var modernizr = require("modernizr");
 
 function wrapOutput(output) {
     // Exposing Modernizr as a module.
-    return ";(function(window){\n" +
-           "var hadGlobal = 'Modernizr' in window;\n" +
+    return "var hadGlobal = 'Modernizr' in window;\n" +
            "var oldGlobal = window.Modernizr;\n" +
            output + "\n" +
-           "module.exports = window.Modernizr;\n" +
+           "export default window.Modernizr;\n" +
            "if (hadGlobal) { window.Modernizr = oldGlobal; }\n" +
-           "else { delete window.Modernizr; }\n" +
-           "})(window);";
+           "else { delete window.Modernizr; }";
 }
 
 module.exports = function (config) {
